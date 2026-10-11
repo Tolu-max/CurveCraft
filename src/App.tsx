@@ -126,7 +126,7 @@ function App() {
       <header className="topbar">
         <a className="brand" href="#top" aria-label="CurveCraft home"><span className="brand-mark"><i /><i /><i /></span><span>CURVE<span>CRAFT</span></span></a>
         <div className="topbar-center"><span className="online-dot" /> METEORA DBC STUDIO <span className="slash">/</span> SDK {currentDesign?.sdkVersion ?? "1.5.13"}</div>
-        <a className="source-link" href="https://github.com/Tolu-max/SuperteamOpportunaity/tree/feat/solana-live/projects/curvecraft" target="_blank" rel="noreferrer">SOURCE ↗</a>
+        <a className="source-link" href="https://github.com/Tolu-max/SuperteamOpportunaity/tree/qa/worlds-fair-release-2026-10-11/projects/curvecraft" target="_blank" rel="noreferrer">SOURCE ↗</a>
       </header>
 
       <section className="hero" id="top">

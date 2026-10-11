@@ -60,3 +60,13 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 @media (max-width: 380px) {
   .field-grid { grid-template-columns: 1fr; }.field--wide { grid-column: auto; }.panel-heading h2 { font-size: 16px; }.economics-grid strong { font-size: 12px; }.preview-actions { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+  .field { font-size: 10px; }
+  .number-input input, .plain-input, .field select { min-height: 44px; font-size: 16px; }
+  .field-help { font-size: 10px; }
+  .brand, .source-link, .hero-stamp a, .footer a { display: inline-flex; min-height: 44px; align-items: center; }
+  .preset-row button { min-height: 44px; padding: 8px 10px; font-size: 11px; }
+  .preview-actions button, .inspect-button, .baseline-button { min-height: 44px; font-size: 11px; }
+  .toggle-field { min-height: 44px; }
+}
