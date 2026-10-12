@@ -70,6 +70,7 @@ function App() {
   const [result, setResult] = useState<BuildResult | null>(null);
   const [baseline, setBaseline] = useState<SavedDesign | null>(null);
   const [rpc, setRpc] = useState(DEFAULT_RPC);
+  const [showRpc, setShowRpc] = useState(false);
   const [configAddress, setConfigAddress] = useState("");
   const [inspection, setInspection] = useState<LiveConfigInspection | null>(null);
   const [inspectionError, setInspectionError] = useState("");
@@ -200,9 +201,10 @@ function App() {
       <section className="inspector-section" aria-labelledby="inspector-title">
         <div className="inspector-intro"><span className="eyebrow">05 / LIVE PROTOCOL READ</span><h2 id="inspector-title">Inspect a DBC config account.</h2><p>Reads account owner, context slot, and decoded config fields with Meteora’s SDK. Your browser sends read-only requests directly to the RPC URL you enter.</p></div>
         <form className="inspect-form" onSubmit={inspect}>
-          <label className="field"><span>RPC endpoint</span><input className="plain-input public-key-input" type="password" autoComplete="off" spellCheck={false} value={rpc} onChange={(event) => setRpc(event.target.value)} /><small className="field-help">Default: PublicNode Solana mainnet. HTTPS endpoints only, except local validators. Provider URLs are not saved.</small></label>
+          <div className="field"><label htmlFor="rpc-endpoint">RPC endpoint</label><div className="endpoint-input-wrap"><input id="rpc-endpoint" type={showRpc ? "text" : "password"} inputMode="url" autoComplete="off" spellCheck={false} aria-describedby="rpc-endpoint-help" value={rpc} onChange={(event) => setRpc(event.target.value)} /><button className="endpoint-visibility" type="button" aria-label={`${showRpc ? "Hide" : "Show"} RPC endpoint`} onClick={() => setShowRpc((visible) => !visible)}>{showRpc ? "Hide" : "Show"}</button></div></div>
           <label className="field"><span>DBC config account</span><input className="plain-input public-key-input" autoComplete="off" spellCheck={false} value={configAddress} onChange={(event) => setConfigAddress(event.target.value)} placeholder="Paste a public config account address" /></label>
           <button className="inspect-button" type="submit" disabled={inspecting}>{inspecting ? "Reading account…" : "Inspect config ↗"}</button>
+          <p id="rpc-endpoint-help" className="field-help rpc-endpoint-help">Default: PublicNode Solana mainnet. HTTPS endpoints only, except local validators. Provider URLs are not saved.</p>
         </form>
         {inspectionError && <p className="inspection-error" role="alert">{inspectionError}</p>}
         {inspection && <div className="inspection-result" role="status"><div><span>CLUSTER</span><b>{inspection.cluster}</b></div><div><span>CONTEXT SLOT</span><b>{formatInteger(inspection.contextSlot)}</b></div><div><span>OWNER</span><code title={inspection.owner}>{inspection.owner.slice(0, 8)}…{inspection.owner.slice(-6)}</code></div><div><span>DATA LENGTH</span><b>{formatInteger(inspection.dataLength)} bytes</b></div><div><span>MIGRATION PATH</span><b>{inspection.migrationOption === 1 ? "DAMM v2" : "Legacy / inspect"}</b></div><div><span>CURVE POINTS</span><b>{inspection.curvePoints}</b></div><div><span>QUOTE THRESHOLD</span><b>{inspection.migrationQuoteThreshold} base units</b></div><div><span>READ ADDRESS</span><code title={inspection.address}>{inspection.address.slice(0, 8)}…{inspection.address.slice(-6)}</code></div></div>}
