@@ -70,3 +70,86 @@ button:disabled { cursor: not-allowed; opacity: .5; }
   .preview-actions button, .inspect-button, .baseline-button { min-height: 44px; font-size: 11px; }
   .toggle-field { min-height: 44px; }
 }
+
+/* CurveCraft has a warm engineering-workshop identity, distinct from SlotSleuth's dark RPC console. */
+:root {
+  color-scheme: light;
+  color: #292c25;
+  background: #f3f0e7;
+  --bg: #f3f0e7;
+  --panel: #fbf9f2;
+  --panel-raised: #fffdf7;
+  --line: #d7d1c3;
+  --line-soft: #e3ddcf;
+  --text: #292c25;
+  --muted: #5d6258;
+  --dim: #74776d;
+  --acid: #a94327;
+  --violet: #625a9a;
+  --warn: #805b12;
+  --bad: #a8372e;
+}
+body {
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: linear-gradient(#776f5e0b 1px, transparent 1px), linear-gradient(90deg, #776f5e0b 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.topbar { border-color: var(--line); }
+.brand { color: var(--text); }
+.brand-mark { border-color: #a9432766; background: #a9432712; }
+.brand-mark i { background: var(--acid); }
+.topbar-center, .source-link { color: #6e7067; }
+.online-dot { background: #557c50; box-shadow: 0 0 8px #557c5055; }
+.source-link:hover, .hero-stamp a, .footer a:hover { color: var(--acid); }
+.hero { border-color: var(--line); }
+.eyebrow, .topbar-center, .source-link { color: #62665d; }
+.hero h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: -2.5px; }
+.hero-description, .constitution-copy > p, .inspector-intro > p { color: #555b52; }
+.read-only { color: #4c5449; }
+.hero-stamp { border-color: var(--line); border-radius: 2px; background: #fbf9f2; }
+.hero-stamp > span, .hero-stamp code { color: #555b52; }
+.builder-panel, .preview-card, .comparison-card, .inspector-section { border-color: var(--line); background: var(--panel); }
+.panel-heading h2, .form-section-heading h3, .constitution-copy h2, .inspector-intro h2 { color: #292c25; }
+.mainnet-tag, .mini-badge { border-color: #b8ad9c; color: #77491c; }
+.mini-badge { border-color: #c5bfdf; color: #514987; }
+.preset-row, .form-section, .constitution-section { border-color: var(--line); }
+.preset-row > span, .form-section-heading p, .field small, .precision-note, .comparison-card > p,
+.constitution-copy > p, .inspector-intro > p, .field-help, .inspector-note { color: #62665d; }
+.preset-row button, .text-button { border-color: #c9c2b4; color: #41463e; }
+.preset-row button:hover, .text-button:hover { border-color: #625a9a; color: #514987; }
+.section-index { border-color: #b8b1cf; color: #514987; }
+.field { color: #3d4239; }
+.number-input, .plain-input, .field select { border-color: #c9c3b6; background: #fffdf7; color: #292c25; color-scheme: light; }
+.number-input b, .toggle-field small { color: #676b62; }
+.toggle-field { color: #3d4239; }
+.toggle-field input { accent-color: var(--acid); }
+.validation-banner { border-color: #a8b9a0; background: #edf2e8; }
+.validation-banner--partial { border-color: #d4c28e; background: #f7f0dc; }
+.validation-banner--error { border-color: #d2a7a0; background: #f8e9e5; }
+.validation-banner b, .validation-banner--partial b, .validation-banner--error b { color: #30352c; }
+.validation-banner p { color: #50564c; }
+.chart-axis { stroke: #9b978b; }
+.chart-grid { stroke: #d7d1c3; }
+.chart-point { fill: #fbf9f2; }
+.chart-label, .curve-point-list span, .economics-grid span, .economics-grid small { fill: #62665d; color: #62665d; }
+.curve-point-list code, .precision-note { color: #41463e; }
+.economics-grid > div, .inspection-result > div { border-color: #ddd7c9; background: #fffdf7; }
+.economics-grid strong { color: var(--acid); }
+.preview-actions button, .inspect-button { border-color: var(--acid); background: var(--acid); color: #fffaf2; }
+.preview-actions button:last-child { border-color: #625a9a; background: #eeecf6; color: #403a70; }
+.preview-actions button:last-child:hover { background: #e2dfef; }
+.baseline-button { border-color: #c9c2b4; color: #4b4f47; }
+.comparison-card { border-color: #d2cde3; background: #f7f5fb; }
+.compare-stat { border-color: #dfdbea; }
+.compare-stat span, .compare-stat b { color: #46443f; }
+.compare-stat i { color: #514987; }
+.constitution-section { border-color: var(--line); }
+.constitution-preview { border-color: #d7d1c3; background: #fffdf7; }
+.constitution-preview pre, .constitution-preview p { color: #41463e; }
+.inspector-section { background: #fbf9f2; }
+.inspection-result > div { border-color: #ddd7c9; }
+.inspection-result span, .inspection-result b, .inspection-result code { color: #41463e; }
+.footer { color: #62665d; }
+.footer a { color: #4f554c; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline-color: #625a9a; }
