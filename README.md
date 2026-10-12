@@ -8,14 +8,14 @@ From the repository root:
 
 ```sh
 npm ci
-npm run dev:curvecraft
-npm run typecheck --workspace @worlds-fair/curvecraft
-npm run lint --workspace @worlds-fair/curvecraft
-npm run test --workspace @worlds-fair/curvecraft
-npm run build --workspace @worlds-fair/curvecraft
+npm run dev
+npm run typecheck
+npm run lint
+npm run test
+npm run build
 ```
 
-The Vite server prints a local URL (5174 by default). There are no required environment variables; see [.env.example](.env.example). The project builds to `projects/curvecraft/dist`.
+The Vite server prints a local URL (5174 by default). There are no required environment variables; see [.env.example](.env.example). The project builds to `dist`.
 
 ## Workflow
 
@@ -36,7 +36,7 @@ The Vite server prints a local URL (5174 by default). There are no required envi
 
 ## Deployment
 
-The live static app is deployed at https://worlds-fair-curvecraft-production.up.railway.app/. To reproduce the build, run `npm run build --workspace @worlds-fair/curvecraft` at the repository root; the output is `projects/curvecraft/dist`. Railway serves it with the repository's production static server. The GitHub repository is private; public visitors cannot inspect the linked source without authorization.
+The live static app is deployed at https://worlds-fair-curvecraft-production.up.railway.app/. To reproduce the build, run `npm run build` at the repository root; the output is `dist`. Railway serves it with the repository's production static server. The GitHub repository is private; public visitors cannot inspect the linked source without authorization.
 
 ## Live smoke evidence
 

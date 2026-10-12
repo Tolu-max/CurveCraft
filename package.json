@@ -1,32 +1,32 @@
 {
-  "name": "@worlds-fair/curvecraft",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "typecheck": "tsc --noEmit",
-    "lint": "biome lint src vite.config.ts",
-    "test": "vitest run",
-    "build": "tsc --noEmit && vite build",
-    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
-    "preview": "vite preview --host 127.0.0.1",
-    "start": "node ../../scripts/static-server.mjs dist"
-  },
-  "dependencies": {
-    "@meteora-ag/dynamic-bonding-curve-sdk": "1.5.13",
-    "buffer": "6.0.3",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.15",
-    "@types/node": "24.19.2",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.1.2",
-    "typescript": "5.9.3",
-    "vite": "8.3.4",
-    "vitest": "5.0.3"
-  }
+    "name":  "curvecraft",
+    "version":  "0.1.0",
+    "private":  true,
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "vite --host 127.0.0.1",
+                    "typecheck":  "tsc --noEmit",
+                    "lint":  "biome lint src vite.config.ts",
+                    "test":  "vitest run \u0026\u0026 node --test scripts/static-server.test.mjs",
+                    "build":  "tsc --noEmit \u0026\u0026 vite build",
+                    "check":  "npm run typecheck \u0026\u0026 npm run lint \u0026\u0026 npm run test \u0026\u0026 npm run build",
+                    "preview":  "vite preview --host 127.0.0.1",
+                    "start":  "node scripts/static-server.mjs dist"
+                },
+    "dependencies":  {
+                         "@meteora-ag/dynamic-bonding-curve-sdk":  "1.5.13",
+                         "buffer":  "6.0.3",
+                         "react":  "19.3.0",
+                         "react-dom":  "19.3.0"
+                     },
+    "devDependencies":  {
+                            "@biomejs/biome":  "2.5.15",
+                            "@types/node":  "24.19.2",
+                            "@types/react":  "19.2.7",
+                            "@types/react-dom":  "19.2.3",
+                            "@vitejs/plugin-react":  "6.1.2",
+                            "typescript":  "5.9.3",
+                            "vite":  "8.3.4",
+                            "vitest":  "5.0.3"
+                        }
 }
