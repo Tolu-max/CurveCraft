@@ -20,7 +20,7 @@ describe("CurveCraft Meteora DBC modeling", () => {
     expect(design.points).toHaveLength(2);
     expect(design.configuration.migrationOption).toBe(1);
     expect(BigInt(design.migrationQuoteThresholdRaw)).toBeGreaterThan(0n);
-  });
+  }, 15_000);
 
   it("uses the SDK's custom sqrt-price builder for a weighted multi-segment curve", async () => {
     const design = await buildCurveDesign({

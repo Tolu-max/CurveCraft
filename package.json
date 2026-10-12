@@ -10,7 +10,8 @@
     "test": "vitest run",
     "build": "tsc --noEmit && vite build",
     "check": "npm run typecheck && npm run lint && npm run test && npm run build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "start": "node ../../scripts/static-server.mjs dist"
   },
   "dependencies": {
     "@meteora-ag/dynamic-bonding-curve-sdk": "1.5.13",
