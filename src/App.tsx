@@ -30,7 +30,7 @@ function downloadFile(name: string, contents: string, type: string): void {
   anchor.href = url;
   anchor.download = name;
   anchor.click();
-  setTimeout(() => URL.revokeObjectURL(url), 0);
+  setTimeout(() => URL.revokeObjectURL(url), 1_000);
 }
 
 function CurveChart({ design }: { design: CurveDesign }) {
