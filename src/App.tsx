@@ -90,10 +90,10 @@ function App() {
     setInput((current) => ({ ...current, [key]: value }));
   };
 
-  const choosePreset = (preset: "balanced" | "longer-discovery" | "faster-graduation") => {
+  const choosePreset = (preset: "balanced" | "higher-target" | "lower-target") => {
     if (preset === "balanced") setInput({ ...DEFAULT_INPUT, leftoverReceiver: input.leftoverReceiver });
-    if (preset === "longer-discovery") setInput({ ...DEFAULT_INPUT, graduationMarketCap: 5_000_000, segmentCount: 8, curveShape: "more-liquidity-late", lockedLiquidityPercent: 90, leftoverReceiver: input.leftoverReceiver });
-    if (preset === "faster-graduation") setInput({ ...DEFAULT_INPUT, initialMarketCap: 20_000, graduationMarketCap: 250_000, segmentCount: 3, curveShape: "more-liquidity-early", startingFeeBps: 300, endingFeeBps: 100, leftoverReceiver: input.leftoverReceiver });
+    if (preset === "higher-target") setInput({ ...DEFAULT_INPUT, graduationMarketCap: 5_000_000, segmentCount: 8, curveShape: "more-liquidity-late", lockedLiquidityPercent: 90, leftoverReceiver: input.leftoverReceiver });
+    if (preset === "lower-target") setInput({ ...DEFAULT_INPUT, initialMarketCap: 20_000, graduationMarketCap: 250_000, segmentCount: 3, curveShape: "more-liquidity-early", startingFeeBps: 300, endingFeeBps: 100, leftoverReceiver: input.leftoverReceiver });
   };
 
   const saveBaseline = () => {
@@ -126,11 +126,11 @@ function App() {
       <header className="topbar">
         <a className="brand" href="#top" aria-label="CurveCraft home"><span className="brand-mark"><i /><i /><i /></span><span>CURVE<span>CRAFT</span></span></a>
         <div className="topbar-center"><span className="online-dot" /> METEORA DBC STUDIO <span className="slash">/</span> SDK {currentDesign?.sdkVersion ?? "1.5.13"}</div>
-        <a className="source-link" href="https://github.com/Tolu-max/SuperteamOpportunaity/tree/qa/worlds-fair-release-2026-10-11/projects/curvecraft" target="_blank" rel="noreferrer">SOURCE ↗</a>
+        <a className="source-link" href="https://github.com/Tolu-max/SuperteamOpportunaity/tree/qa/worlds-fair-release-2026-10-11/projects/curvecraft" target="_blank" rel="noreferrer">SOURCE · PRIVATE ↗</a>
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-copy"><p className="eyebrow"><span /> CONFIGURE · MODEL · VERIFY</p><h1>Design the curve<br /><em>before launch.</em></h1><p className="hero-description">Engineer a Meteora Dynamic Bonding Curve with SDK-backed economics, fees, and DAMM v2 graduation analysis.</p><div className="read-only"><span aria-hidden="true">◈</span> Read-only by design · No wallet · No transactions</div></div>
+        <div className="hero-copy"><p className="eyebrow"><span /> CONFIGURE · REVIEW · INSPECT</p><h1>Design the curve<br /><em>before launch.</em></h1><p className="hero-description">Build and validate Meteora DBC parameters with the official SDK. Inspect public config accounts and export a reviewable launch plan.</p><div className="read-only"><span aria-hidden="true">◈</span> Read-only by design · No wallet · No transactions</div></div>
         <div className="hero-stamp"><span>DBC PROGRAM</span><code>dbcij3…SMaqN</code><a href="https://docs.meteora.ag/core-products/dbc/what-is-dbc" target="_blank" rel="noreferrer">Protocol documentation ↗</a></div>
       </section>
 
@@ -138,7 +138,7 @@ function App() {
         <section className="builder-panel" aria-labelledby="builder-title">
           <div className="panel-heading"><div><span className="eyebrow">01 / CONFIGURATION</span><h2 id="builder-title">Build a launch model</h2></div><span className="mainnet-tag">MODEL ONLY</span></div>
 
-          <fieldset className="preset-row"><legend className="sr-only">Configuration presets</legend><span>START FROM</span><button type="button" onClick={() => choosePreset("balanced")}>Balanced</button><button type="button" onClick={() => choosePreset("longer-discovery")}>Long discovery</button><button type="button" onClick={() => choosePreset("faster-graduation")}>Faster graduation</button></fieldset>
+          <fieldset className="preset-row"><legend className="sr-only">Configuration presets</legend><span>START FROM</span><button type="button" onClick={() => choosePreset("balanced")}>Balanced</button><button type="button" onClick={() => choosePreset("higher-target")}>Higher graduation target</button><button type="button" onClick={() => choosePreset("lower-target")}>Lower graduation target</button></fieldset>
 
           <div className="form-section"><div className="form-section-heading"><span className="section-index">A</span><div><h3>Supply &amp; price path</h3><p>Market caps use quote-token units, not an external USD price.</p></div></div>
             <div className="field-grid">
@@ -153,17 +153,17 @@ function App() {
             </div>
           </div>
 
-          <div className="form-section"><div className="form-section-heading"><span className="section-index">B</span><div><h3>Trading fees</h3><p>Fee endpoints are basis points; 100 bps equals 1%.</p></div></div>
+          <div className="form-section"><div className="form-section-heading"><span className="section-index">B</span><div><h3>Fee settings</h3><p>Base-fee endpoints are basis points; 100 bps equals 1%. This config preview does not simulate trades or realized fees.</p></div></div>
             <div className="field-grid">
               <label className="field"><span>Starting fee</span><div className="number-input"><input aria-label="Starting fee in basis points" type="number" min="25" max="9900" step="25" value={input.startingFeeBps} onChange={onNumber("startingFeeBps")} /><b>BPS</b></div></label>
               <label className="field"><span>Ending fee</span><div className="number-input"><input aria-label="Ending fee in basis points" type="number" min="25" max="9900" step="25" value={input.endingFeeBps} onChange={onNumber("endingFeeBps")} /><b>BPS</b></div></label>
               <label className="field"><span>Schedule duration</span><div className="number-input"><input aria-label="Fee schedule duration in seconds" type="number" min="60" step="60" value={input.feeDurationSeconds} onChange={onNumber("feeDurationSeconds")} /><b>SECONDS</b></div></label>
               <label className="field"><span>Schedule type</span><select aria-label="Fee schedule type" value={input.feeSchedule} onChange={(event) => update("feeSchedule", event.target.value as CurveInput["feeSchedule"])}><option value="linear">Linear decrease</option><option value="exponential">Exponential decrease</option></select></label>
-              <label className="toggle-field"><input aria-label="Enable dynamic fee" type="checkbox" checked={input.dynamicFeeEnabled} onChange={(event) => update("dynamicFeeEnabled", event.target.checked)} /><span><b>Dynamic fee</b><small>Volatility-based fee parameters from SDK defaults</small></span></label>
+              <label className="toggle-field"><input aria-label="Enable dynamic fee" type="checkbox" checked={input.dynamicFeeEnabled} onChange={(event) => update("dynamicFeeEnabled", event.target.checked)} /><span><b>Enable SDK dynamic-fee settings</b><small>Sets the SDK config flag; no volatility or trade-fee simulation is performed.</small></span></label>
             </div>
           </div>
 
-          <div className="form-section"><div className="form-section-heading"><span className="section-index">C</span><div><h3>Graduation &amp; allocation</h3><p>New DBC configurations migrate to DAMM v2.</p></div></div>
+          <div className="form-section"><div className="form-section-heading"><span className="section-index">C</span><div><h3>Migration &amp; allocation</h3><p>New DBC configurations target DAMM v2. This tool validates selected migration parameters; it does not model the resulting DAMM pool.</p></div></div>
             <div className="field-grid">
               <label className="field"><span>Migration fee</span><div className="number-input"><input aria-label="Migration fee percent" type="number" min="0" max="99" step="1" value={input.migrationFeePercent} onChange={onNumber("migrationFeePercent")} /><b>%</b></div></label>
               <label className="field"><span>Creator share of migration fee</span><div className="number-input"><input aria-label="Creator migration fee share percent" type="number" min="0" max="100" step="1" value={input.creatorMigrationFeePercent} onChange={onNumber("creatorMigrationFeePercent")} /><b>%</b></div></label>
@@ -171,6 +171,7 @@ function App() {
               <label className="field"><span>Partner share of liquidity</span><div className="number-input"><input aria-label="Partner share of liquidity percent" type="number" min="0" max="100" step="1" value={input.partnerSharePercent} onChange={onNumber("partnerSharePercent")} /><b>%</b></div></label>
               <label className="field field--wide"><span>Leftover receiver public key <small>optional for full SDK validation</small></span><input aria-label="Leftover receiver public key" className="plain-input public-key-input" autoComplete="off" spellCheck={false} value={input.leftoverReceiver} onChange={(event) => update("leftoverReceiver", event.target.value)} placeholder="Add a real receiver address; no private key" /></label>
             </div>
+            <p className="field-help">This model uses a standard SPL token and immutable token authority. It records quote-token decimals as an assumption; it does not select or verify a quote mint.</p>
           </div>
           {result?.ok ? <div className={`validation-banner validation-banner--${result.design.sdkValidation === "curve-and-config" ? "complete" : "partial"}`} role="status"><span className="validation-icon">{result.design.sdkValidation === "curve-and-config" ? "✓" : "!"}</span><div><b>{result.design.sdkValidation === "curve-and-config" ? "SDK configuration checks passed" : "Curve checks passed · config incomplete"}</b><p>{result.design.validationNote}</p></div></div> : result ? <div className="validation-banner validation-banner--error" role="alert"><span className="validation-icon">!</span><div><b>Review configuration inputs</b><p>{result.message}</p></div></div> : <div className="validation-banner validation-banner--partial" role="status"><span className="validation-icon">…</span><div><b>Loading Meteora SDK</b><p>Building the curve and running local validation.</p></div></div>}
         </section>
@@ -192,14 +193,14 @@ function App() {
       </div>
 
       <section className="constitution-section" aria-labelledby="constitution-title">
-        <div className="constitution-copy"><span className="eyebrow">04 / LAUNCH CONSTITUTION</span><h2 id="constitution-title">Make every assumption inspectable.</h2><p>Turn the model into a review document for your launch team. CurveCraft spells out the quote unit, migration path, fee split, locked allocation, and validation gaps.</p></div>
+        <div className="constitution-copy"><span className="eyebrow">04 / LAUNCH PLAN</span><h2 id="constitution-title">Make every assumption inspectable.</h2><p>The Launch Constitution is a planning document for your team. It records quote-unit assumptions, migration settings, fee allocation, locked liquidity, and validation gaps. It is not a legal document or an on-chain instrument.</p></div>
         <div className="constitution-preview">{currentDesign ? <pre>{buildLaunchConstitution(input, currentDesign)}</pre> : <p>Fix the configuration to generate the constitution.</p>}</div>
       </section>
 
       <section className="inspector-section" aria-labelledby="inspector-title">
         <div className="inspector-intro"><span className="eyebrow">05 / LIVE PROTOCOL READ</span><h2 id="inspector-title">Inspect a DBC config account.</h2><p>Reads account owner, context slot, and decoded config fields with Meteora’s SDK. Your browser sends read-only requests directly to the RPC URL you enter.</p></div>
         <form className="inspect-form" onSubmit={inspect}>
-          <label className="field"><span>RPC endpoint</span><input className="plain-input public-key-input" type="password" autoComplete="off" spellCheck={false} value={rpc} onChange={(event) => setRpc(event.target.value)} /><small className="field-help">HTTPS endpoints only, except local validators. Provider URLs are not saved.</small></label>
+          <label className="field"><span>RPC endpoint</span><input className="plain-input public-key-input" type="password" autoComplete="off" spellCheck={false} value={rpc} onChange={(event) => setRpc(event.target.value)} /><small className="field-help">Default: PublicNode Solana mainnet. HTTPS endpoints only, except local validators. Provider URLs are not saved.</small></label>
           <label className="field"><span>DBC config account</span><input className="plain-input public-key-input" autoComplete="off" spellCheck={false} value={configAddress} onChange={(event) => setConfigAddress(event.target.value)} placeholder="Paste a public config account address" /></label>
           <button className="inspect-button" type="submit" disabled={inspecting}>{inspecting ? "Reading account…" : "Inspect config ↗"}</button>
         </form>
@@ -208,7 +209,7 @@ function App() {
         <p className="inspector-note">The SDK decodes the account bytes captured at the displayed confirmed slot. Cluster identity is a separate read. The inspector does not discover quote-mint support, verify receiver control, create instructions, or submit transactions; the account may change after the read.</p>
       </section>
 
-      <footer className="footer"><span>CURVECRAFT · METEORA DBC ENGINEERING STUDIO</span><div><a href="https://docs.meteora.ag/core-products/dbc/launch-configurations" target="_blank" rel="noreferrer">Launch config docs ↗</a><a href="https://docs.meteora.ag/core-products/dbc/formulas" target="_blank" rel="noreferrer">Formula reference ↗</a></div></footer>
+      <footer className="footer"><span>CURVECRAFT · METEORA DBC PARAMETER DESIGN</span><div><a href="https://docs.meteora.ag/core-products/dbc/launch-configurations" target="_blank" rel="noreferrer">Launch config docs ↗</a><a href="https://docs.meteora.ag/core-products/dbc/formulas" target="_blank" rel="noreferrer">Formula reference ↗</a></div></footer>
     </main>
   );
 }
